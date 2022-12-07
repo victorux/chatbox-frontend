@@ -6,6 +6,7 @@ export const theme = {
         grayBorder: '#DFDFDF',
         grayBg: '#F4F6F8',
         danger: '#F33411',
+        white: '#FFFFFF'
         }, 
     font: {
         ubuntu: "'Ubuntu', sans-serif",
