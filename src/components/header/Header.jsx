@@ -1,10 +1,15 @@
+import { Fragment} from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import Button from '../button/Button'
 import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, LinksStyled, UserArea } from './header.styled'
+import UserMenu from "./UserMenu";
 
 
 
 function Header() {
+
+  let isUserLoggedIn = true;
+
   let activeStyle = {
     color: "#FFFFFF"
   }
@@ -28,8 +33,13 @@ function Header() {
         <NavLink to="/chat" style={({isActive}) => isActive ? activeStyle : undefined} >Chat</NavLink>
       </LinksStyled>
       <UserArea>
-        <Button onClick={handleSignIn}>Sign In</Button>
-        <Button type="secondary" onClick={handleSignUp}>Sign Up</Button>
+        { isUserLoggedIn
+          ? <UserMenu />
+          : <Fragment>
+              <Button onClick={handleSignIn}>Sign In</Button>
+              <Button type="secondary" onClick={handleSignUp}>Sign Up</Button>
+            </Fragment>
+        }
       </UserArea>
     </HeaderStyled>
   )
