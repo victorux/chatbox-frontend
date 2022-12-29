@@ -1,9 +1,10 @@
 import { Container, LabelAvatar, Menu, StyledUser } from "./userMenu.styled"
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
-
+import arrowDown from '../../assets/icons/arrowdown.svg'
 
 function UserMenu() {
+  
 const [showMenu, setShowMenu] = useState(false);
 const ref = useRef();
 const navigate = useNavigate();
@@ -34,8 +35,9 @@ const handleClickMyProfile = () => {
 
   return (
     <Container ref={ref}>
-        <StyledUser>
-            <LabelAvatar onClick={handleClickAvatar}><span>VB</span></LabelAvatar>
+        <StyledUser onClick={handleClickAvatar}>
+            <LabelAvatar><span>VB</span></LabelAvatar>
+            <img src={arrowDown}  alt="" />
         </StyledUser>
         {
           showMenu

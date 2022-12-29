@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../styles/breakpoints";
 
 export const HeaderStyled = styled.header`
     padding: 36px 40px;
@@ -9,6 +10,10 @@ export const HeaderStyled = styled.header`
 
     a {
         text-decoration: none;
+    }
+
+    @media ${device.mobileL} {
+        padding: 24px 14px;
     }
 `
 
@@ -38,25 +43,34 @@ export const LogoLabel = styled.span`
     color: #fff;
 `
 
-export const LinksStyled = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: ${({theme}) => theme.color.gray};
-    gap: 30px;
-
-
-    a {
-        color: ${({ theme }) => theme.color.gray };
-        text-decoration: none;
-        font-size: ${({theme}) => theme.fontSize._300};
-    
-    }
-`
-
 export const UserArea = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 10px;
+  gap: 40px;
+
+  @media ${device.mobileL} {
+        gap: 30px;
+    }
+`
+
+export const ChatContainer = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`
+
+export const ChatLabel = styled.div`
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: ${({theme}) => theme.color.primary};
 `

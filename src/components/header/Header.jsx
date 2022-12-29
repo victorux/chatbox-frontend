@@ -1,23 +1,21 @@
-import { Fragment} from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom"
+
+import { Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom"
 import Button from '../button/Button'
-import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, LinksStyled, UserArea } from './header.styled'
+import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, UserArea, ChatContainer, ChatLabel } from './header.styled'
 import UserMenu from "./UserMenu";
+import chatIcon from '../../assets/icons/chat.svg'
 
 
 
 function Header() {
 
   let isUserLoggedIn = true;
-
-  let activeStyle = {
-    color: "#FFFFFF"
-  }
   
   const navigate = useNavigate();
 
-  const handleSignIn = () => navigate('/signin');
-  const handleSignUp = () => navigate('/signup');
+  const handlerGetStarted = () => navigate('/signup');
+  const handlerChat = () => navigate('/chat');
 
   return (
     <HeaderStyled>
@@ -27,18 +25,18 @@ function Header() {
           <LogoLabel>ChatBox</LogoLabel>
         </LogoStyled>
       </Link>
-      <LinksStyled>
-        <NavLink to="/" style={({isActive}) => isActive ? activeStyle : undefined} >Home</NavLink>
-        <NavLink to="/about" style={({isActive}) => isActive ? activeStyle : undefined} >About</NavLink>
-        <NavLink to="/chat" style={({isActive}) => isActive ? activeStyle : undefined} >Chat</NavLink>
-      </LinksStyled>
       <UserArea>
-        { isUserLoggedIn
-          ? <UserMenu />
-          : <Fragment>
-              <Button onClick={handleSignIn}>Sign In</Button>
-              <Button type="secondary" onClick={handleSignUp}>Sign Up</Button>
-            </Fragment>
+        { 
+          isUserLoggedIn
+            ?
+            <Fragment>
+              <ChatContainer onClick={handlerChat}>
+                <img src={chatIcon} alt="" />
+                <ChatLabel />
+              </ChatContainer>
+              <UserMenu />
+            </Fragment> 
+            : <Button type="secondary" onClick={handlerGetStarted}>Get Started</Button>
         }
       </UserArea>
     </HeaderStyled>
