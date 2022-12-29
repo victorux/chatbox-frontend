@@ -12,7 +12,7 @@ export const HeaderStyled = styled.header`
         text-decoration: none;
     }
 
-    @media ${device.mobileL} {
+    @media ${device.tablet} {
         padding: 24px 14px;
     }
 `

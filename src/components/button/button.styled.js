@@ -9,6 +9,8 @@ const handleType = (type, t) => {
                 border-radius: 12px;
                 border: none;
                 padding: 17px 30px;
+                letter-spacing: 0;
+                font-weight: 500;
         `;
       case "secondary":
         return `

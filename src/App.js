@@ -1,4 +1,4 @@
-import {Fragment} from 'react'
+import { Fragment } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from "./components/pages/Home"
 import About from "./components/pages/About"
@@ -14,6 +14,7 @@ import { ThemeProvider } from 'styled-components';
 
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <>
