@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
+a {
+  color: ${({theme}) => theme.color.primary};
+}
+
 h1,h2,h3,h4,h5 {
   font-family: ${({theme}) => theme.font.ubuntu};
 }

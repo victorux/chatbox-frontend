@@ -7,13 +7,13 @@ import { device } from '../styles/breakpoints';
 
 
 const Wrapper = styled.div`
-  width:  100vw;
-  height: calc(100vh - 112px);
+  width:  100%;
+  height: calc(100vh - 118px);
   padding: 0 40px;
   overflow: hidden;
 
   @media ${device.tablet}{
-    height: calc(100vh - 88px);
+    height: calc(100% - 88px);
   }
 
   @media ${device.mobileL}{

@@ -10,11 +10,11 @@ import chatIcon from '../../assets/icons/chat.svg'
 
 function Header() {
 
-  let isUserLoggedIn = true;
+  let isUserLoggedIn = false;
   
   const navigate = useNavigate();
 
-  const handlerGetStarted = () => navigate('/signup');
+  const handlerGetStarted = () => navigate('/signin');
   const handlerChat = () => navigate('/chat');
 
   return (
