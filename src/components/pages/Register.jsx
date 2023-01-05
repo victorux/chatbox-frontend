@@ -1,14 +1,14 @@
-import SignUpForm from '../forms/SignUpForm';
+import RegisterForm from '../forms/RegisterForm'
 import { WrapperForm, Title, Description } from '../forms/forms.styled'
 
-function SignUp() {
+function SignIn() {
   return (
     <WrapperForm>
-        <Title>Sign Up</Title>
+        <Title>Sign In</Title>
         <Description>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Description>
-        <SignUpForm />
+        <RegisterForm />
     </WrapperForm>
   )
 }
 
-export default SignUp
+export default SignIn

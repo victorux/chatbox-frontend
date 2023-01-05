@@ -1,14 +1,14 @@
-import SignInForm from '../forms/SignInForm'
+import LoginForm from '../forms/LoginForm'
 import { WrapperForm, Title, Description } from '../forms/forms.styled'
 
-function SignIn() {
+function Login() {
   return (
     <WrapperForm>
-        <Title>Sign In</Title>
+        <Title>Log In</Title>
         <Description>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Description>
-        <SignInForm />
+        <LoginForm />
     </WrapperForm>
   )
 }
 
-export default SignIn
+export default Login

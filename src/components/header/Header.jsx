@@ -14,7 +14,7 @@ function Header() {
   
   const navigate = useNavigate();
 
-  const handlerGetStarted = () => navigate('/signin');
+  const handlerGetStarted = () => navigate('/login');
   const handlerChat = () => navigate('/chat');
 
   return (

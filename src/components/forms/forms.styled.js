@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { device } from "../styles/breakpoints";
 
 export const WrapperForm = styled.div`
     margin: 0 auto;
@@ -21,14 +20,27 @@ export const Description = styled.p`
     text-align: center;
     margin: 20px 0;
 `
-export const LabelStyled = styled.label`
-    width: 100%;
-    color: ${({ theme }) => theme.color.gray};
-    font-size: ${({ theme }) => theme.fontSize._100};
+
+export const StyledFormContainer = styled.div`
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
 `
 
-export const InputStyled = styled.input`
-    width: 100%;
+export const StyledControl = styled.div`
+
+	label {
+		display: block;
+		width: 100%;
+		color: ${({ theme }) => theme.color.gray};
+		font-size: ${({ theme }) => theme.fontSize._100};
+		letter-spacing: 0.30px;
+	}
+
+	input {
+		width: 100%;
     padding: 18px 20px;
     border-radius: 7px;
     margin-top: 8px;
@@ -36,25 +48,26 @@ export const InputStyled = styled.input`
     border: 2px solid ${({ theme }) => theme.color.gray};
     outline: none;
 
-
     :focus,
     :active {
-
-        background-color: azure;
-        border: 2px solid ${({ theme }) => theme.color.gray};
+			background-color: azure;
+			border: 2px solid ${({ theme }) => theme.color.gray};
     }
+	}
+
 `
 
-export const InputFlex = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+export const StyledError = styled.div`
+	color: ${({ theme }) => theme.color.danger};
+	font-size: ${({ theme }) => theme.fontSize._100};
+	margin-top: 4px;
+	letter-spacing: 0.30px;
 `
+
 
 export const ButtonStyled = styled.button`
     width: 100%;
     padding: 18px 26px;
-    margin-top: 20px;
     border-radius: 7px;
     background-color: ${({ theme }) => theme.color.primary};
     color: ${({ theme }) => theme.color.dark};
@@ -69,7 +82,7 @@ export const ButtonStyled = styled.button`
     }
 `
 
-export const OtherOption = styled.div`
+export const OtherOptions = styled.div`
     margin-top: 20px;
     display: flex;
     flex-direction: row;

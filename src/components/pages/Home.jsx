@@ -141,7 +141,7 @@ const HeroImage = styled.div`
 
 function Home() {
   const navigate = useNavigate();
-  const handlerButton = () => navigate('/signin');
+  const handlerButton = () => navigate('/login');
 
   return (
     <Wrapper>
