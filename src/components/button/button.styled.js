@@ -12,6 +12,16 @@ const handleType = (type, t) => {
                 letter-spacing: 0;
                 font-weight: 500;
         `;
+        case "primaryWhiteBg":
+        return `
+                color: ${t.color.dark}; 
+                background-color: ${t.color.primary}; 
+                border-radius: 12px;
+                border: none;
+                padding: 17px 30px;
+                letter-spacing: 0;
+                font-weight: 500;
+        `;
       case "secondary":
         return `
                 color:${t.color.white};
