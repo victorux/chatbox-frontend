@@ -48,6 +48,10 @@ export const HeaderMessages = styled.div`
         letter-spacing: 0.7px;
     }
 
+    @media ${device.tablet}{
+        margin-left: 20px;
+    }
+
 `
 
 export const HeaderTools = styled.div`
@@ -79,6 +83,15 @@ export const Button = styled.button`
         background-color: ${({ theme }) => theme.color.primary};
         border-color: ${({ theme }) => theme.color.primary};
     }
+`
+
+// 
+
+export const ContactsContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 112px - 113px);
+    overflow-x: hidden;
+    overflow-y: scroll;
 `
 
 
