@@ -3,10 +3,12 @@ import { device } from "../../../styles/breakpoints";
 
 
 export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-left: 40px;
     padding-right: 40px;
     padding-top: 40px;
-    border: 1px solid blueviolet;
     width: calc(100% - 40px);
     height: calc(100% - (78px + 172px + 40px + 40px));
 

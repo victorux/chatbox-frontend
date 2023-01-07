@@ -1,11 +1,14 @@
+import MessageBubble from "../messageBubble/MessageBubble"
 import { Container } from "./chatconversation.styled"
 
+import img1 from "../../../../assets/images/profile.jpg"
+import img2 from "../../../../assets/images/avatar2.jpg"
 
 function ChatConversation() {
   return (
     <Container>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam libero, laudantium tempore ea repellat pariatur corporis et dignissimos doloribus voluptas dolorum provident perspiciatis. Impedit quis atque, accusamus aliquid debitis quas.
-      Repellat voluptatem ipsam nobis corrupti commodi delectus deserunt, amet ab perferendis aliquid ipsum possimus, minima ratione corporis atque incidunt quibusdam! Molestiae dicta esse nostrum mollitia error quidem veritatis molestias numquam.
+      <MessageBubble message="Hi, how are you?" linkImg={img1} />
+      <MessageBubble message="Hey! Thanks I'am fine" linkImg={img2} fromMe/>
     </Container>
   )
 }

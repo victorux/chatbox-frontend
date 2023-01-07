@@ -12,7 +12,7 @@ function ChatHeader() {
   return (
     <Container>
       <ChatWith>
-        <Avatar src={img1} alt="" size="small" />
+        <Avatar src={img1} alt="" size="medium" />
         <Label>John Smilga</Label>
       </ChatWith>
       <div>
