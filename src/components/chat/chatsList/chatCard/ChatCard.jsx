@@ -1,12 +1,12 @@
-import Avatar from "../avatar/Avatar"
+import Avatar from "../../../avatar/Avatar"
 import { 
   CardContainer,
   BottomBorder,
   CardContent,
   CardLabelContainer
-} from "./contactCard.styled"
+} from "./chatCard.styled"
 
-function ContactCard({ title, desc, lastDate, imgSrc}) {
+function ChatCard({ title, desc, lastDate, imgSrc}) {
   return (
     <CardContainer>
 
@@ -24,4 +24,4 @@ function ContactCard({ title, desc, lastDate, imgSrc}) {
   )
 }
 
-export default ContactCard
+export default ChatCard

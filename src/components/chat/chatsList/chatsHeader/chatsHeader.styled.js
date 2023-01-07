@@ -1,40 +1,7 @@
 import styled from "styled-components";
-import { device } from "../styles/breakpoints";
+import { device } from "../../../styles/breakpoints";
 
-export const ChatBg = styled.div`
-    color: ${({ theme }) => theme.color.dark};
-    background-color: #fff;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    height: calc(100vh - 112px);
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-
-    @media ${device.tablet}{
-        height: calc(100vh - 88px);
-    }
-`
-
-// 
-
-export const MessagesContainer = styled.div`
-    flex: 1;
-    height: 100%;
-    background-color: #fff;
-    border-right: 1px solid ${({ theme }) => theme.color.grayBorder};
-`
-
-export const ConversationContainer = styled.div`
-    flex: 2.6;
-    height: 100%;
-    background-color: ${({ theme }) => theme.color.grayBg};
-`
-
-// 
-
-
-export const HeaderMessages = styled.div`
+export const Container = styled.div`
     margin-left: 40px;
     border-bottom: 1px solid ${({ theme }) => theme.color.grayBorder};
     padding: 30px 30px 30px 0;
@@ -54,14 +21,15 @@ export const HeaderMessages = styled.div`
 
 `
 
-export const HeaderTools = styled.div`
+export const ChatsHeaderTools = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 10px;
 `
 
-export const Button = styled.button`
+
+export const ToolButton = styled.button`
     padding: 16px 16px;
     border: 1px solid ${({ theme }) => theme.color.grayBorder};
     border-radius: 50px;
@@ -84,17 +52,3 @@ export const Button = styled.button`
         border-color: ${({ theme }) => theme.color.primary};
     }
 `
-
-// 
-
-export const ContactsContainer = styled.div`
-    width: 100%;
-    height: calc(100vh - 112px - 113px);
-    overflow-x: hidden;
-    overflow-y: scroll;
-`
-
-
-
-
-
