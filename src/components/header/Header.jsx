@@ -5,13 +5,14 @@ import Button from '../button/Button'
 import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, UserArea, ChatContainer, ChatLabel } from './header.styled'
 import UserMenu from "./UserMenu";
 import chatIcon from '../../assets/icons/chat.svg'
+import { useSelector } from "react-redux";
 
 
 
 function Header() {
 
-  let isUserLoggedIn = true;
-  
+  const currentUser = useSelector(state => state.user.currentUser);
+
   const navigate = useNavigate();
 
   const handlerGetStarted = () => navigate('/login');
@@ -27,7 +28,7 @@ function Header() {
       </Link>
       <UserArea>
         { 
-          isUserLoggedIn
+          currentUser
             ?
             <Fragment>
               <ChatContainer onClick={handlerChat}>

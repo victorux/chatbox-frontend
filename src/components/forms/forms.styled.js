@@ -77,9 +77,18 @@ export const ButtonStyled = styled.button`
     font-size: ${({ theme }) => theme.fontSize._300};
     transition: all 0.25s ease-in-out;
 
+    :disabled{
+        opacity: 0.5;
+        cursor: auto;
+    }
+
     :hover {
         background-color: ${({ theme }) => theme.color.primaryDark};
     }
+`
+
+export const ErrorStyled = styled.div`
+    color: ${({ theme}) => theme.color.danger};
 `
 
 export const OtherOptions = styled.div`

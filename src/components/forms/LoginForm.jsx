@@ -1,10 +1,15 @@
 import { Formik, Form } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { login } from '../../redux/apiCall';
 import FormikControl from './FormikControl';
-import { ButtonStyled, OtherOptions, StyledFormContainer } from './forms.styled.js';
+import { ButtonStyled, ErrorStyled, OtherOptions, StyledFormContainer } from './forms.styled.js';
 
 function LoginForm() {
+
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector(state => state.user);
 
   const initialValues = {
     email: '',
@@ -15,7 +20,9 @@ function LoginForm() {
     password: Yup.string().required('Password required')
   })
 
-  const onSubmit = values => console.log('Form data', values);
+  const onSubmit =  ({email, password}) => {
+    login(dispatch, {email, password});
+  };
 
   return (
     <StyledFormContainer>
@@ -39,7 +46,8 @@ function LoginForm() {
             name='password'
             placeholder='Your Password'
           />
-          <ButtonStyled type='submit'>Login</ButtonStyled>
+          <ButtonStyled type='submit' disabled={isFetching}>Login</ButtonStyled>
+          {error ? <ErrorStyled>Something went wrong...</ErrorStyled> : null}
         </Form>
       </Formik>
       <OtherOptions>

@@ -31,12 +31,12 @@ function RegisterForm() {
   })
 
   const onSubmit = (values, { resetForm }) => {
-    
+
     const { reenterPassword, ...otherOptions } = values;
-    const data = {...otherOptions};
+    const formValues = {...otherOptions};
   
-    const makeRequest = (data) => {
-      axios.post(
+    const makeRequest = async (data) => {
+    await  axios.post(
         'http://localhost:8800/api/auth/register', data)
         .then( function (response){
           if(response.status === 200){
@@ -48,7 +48,7 @@ function RegisterForm() {
           console.log(err);
         })
     }
-    makeRequest(data);
+    makeRequest(formValues);
   };
 
 
