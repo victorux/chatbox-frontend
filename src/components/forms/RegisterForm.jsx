@@ -1,10 +1,12 @@
 import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom"
 import * as Yup from 'yup';
 import FormikControl from './FormikControl';
 import { ButtonStyled, OtherOptions, StyledFormContainer } from './forms.styled.js';
+import axios from "axios";
 
 function RegisterForm() {
+  const navigate = useNavigate();
 
   const initialValues = {
     firstName: '',
@@ -28,7 +30,27 @@ function RegisterForm() {
       })
   })
 
-  const onSubmit = values => console.log('Form data', values);
+  const onSubmit = (values, { resetForm }) => {
+    
+    const { reenterPassword, ...otherOptions } = values;
+    const data = {...otherOptions};
+  
+    const makeRequest = (data) => {
+      axios.post(
+        'http://localhost:8800/api/auth/register', data)
+        .then( function (response){
+          if(response.status === 200){
+            resetForm();
+            navigate("/login");
+          }
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+    }
+    makeRequest(data);
+  };
+
 
   return (
     <StyledFormContainer>
@@ -75,7 +97,7 @@ function RegisterForm() {
             name='reenterPassword'
 						placeholder='Reenter the password'
           />
-          <ButtonStyled type='submit'>Login</ButtonStyled>
+          <ButtonStyled type='submit'>Register</ButtonStyled>
         </Form>
       </Formik>
       <OtherOptions>
