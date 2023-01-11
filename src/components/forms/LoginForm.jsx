@@ -7,7 +7,7 @@ import FormikControl from './FormikControl';
 import { ButtonStyled, ErrorStyled, OtherOptions, StyledFormContainer } from './forms.styled.js';
 
 function LoginForm() {
-
+  
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector(state => state.user);
 
@@ -23,7 +23,7 @@ function LoginForm() {
   const onSubmit =  ({email, password}) => {
     login(dispatch, {email, password});
   };
-
+  
   return (
     <StyledFormContainer>
       <Formik 

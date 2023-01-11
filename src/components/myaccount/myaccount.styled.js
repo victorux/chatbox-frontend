@@ -82,18 +82,3 @@ export const LogOutButton = styled.div`
     }
 `
 
-
-export const ContainerProfilePhoto = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	align-items: center;
-	justify-content: center;
-
-	img {
-		width: 98px;
-		height: 98px;
-		border-radius: 50%;
-	}
-`
-
