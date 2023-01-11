@@ -90,9 +90,9 @@ function ProfileImageForm() {
 		setImage(null);
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		await updateUserImage(dispatch, user._id, image);
+		updateUserImage(dispatch, user._id, image);
 		setSelectedFile(null);
 		setImage(null);
 	}
