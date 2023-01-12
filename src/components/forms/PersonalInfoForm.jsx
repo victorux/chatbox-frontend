@@ -20,8 +20,13 @@ function PersonalInfoForm() {
     lastName: Yup.string().required('Required').min(2, "Minimum 2 characters required").max(20, "Maximum characters required"),
   })
 
-  const onSubmit = (values) => {
-      updateUserInfo(dispatch, user._id, values);
+  const onSubmit = async (values) => {
+    const res = await  updateUserInfo(dispatch, user._id, values);
+    if(res){
+      alert("User has been updated successifuly!")
+    } else {
+      alert("Something went wrong!")
+    }
   };
 
   return (

@@ -52,9 +52,11 @@ export const updateUserInfo = async (dispatch, userId, values) =>{
             firstName: res.data.firstName,
             lastName: res.data.lastName,
         }));
+        return true;
     } catch(err) {
         dispatch(updateUserFailure());
         console.log(err);
+        return(false);
     }
 }
 

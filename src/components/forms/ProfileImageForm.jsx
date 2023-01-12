@@ -6,6 +6,14 @@ import addImage from "../../assets/icons/add-image.png"
 import { useState } from "react";
 import { updateUserImage } from "../../redux/apiCall";
 
+const handleButton = (colorType) => {
+	switch (colorType) {
+		case 'primary':
+			return "#CFF32F";
+		default:
+			return "#E0E0E0";
+	}
+}
 
 const Container = styled.div`
   display: flex;
@@ -50,6 +58,21 @@ const ImageDiv = styled.div`
 `
 const ErrorStyled = styled.div`
     color: ${({ theme}) => theme.color.danger};
+`
+const ActionsWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+`
+const CustomButton = styled.div`
+	padding: 14px 20px;
+	background-color: ${({theme, color}) => handleButton(color)};
+	cursor: pointer;
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	&:hover {
+		opacity: 0.75;
+	}
 `
 
 
@@ -126,11 +149,11 @@ function ProfileImageForm() {
 					/>
 				{error ? <ErrorStyled>Something went wrong..</ErrorStyled> : null}
 				{ selectedFile 
-						? <div>
-								<button type="reset" onClick={handleCancel} disabled={isLoading}>Cancel</button>
-								<button type="submit" onClick={handleSubmit} disabled={isLoading}>Upload</button>
-							</div>
-						: <button type="button" onClick={handleClick}>Upload Photo</button>
+						? <ActionsWrapper>
+								<CustomButton type="reset" onClick={handleCancel} disabled={isLoading}>Cancel</CustomButton>
+								<CustomButton type="submit" onClick={handleSubmit} disabled={isLoading} color="primary">Upload</CustomButton>
+							</ActionsWrapper>
+						: <CustomButton type="button" onClick={handleClick}>Upload New Picture</CustomButton>
 				}
     </Container>
   )
