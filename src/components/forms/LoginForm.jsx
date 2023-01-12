@@ -20,8 +20,8 @@ function LoginForm() {
     password: Yup.string().required('Password required')
   })
 
-  const onSubmit =  ({email, password}) => {
-    login(dispatch, {email, password});
+  const onSubmit = async ({email, password}) => {
+    await login(dispatch, {email, password});
   };
   
   return (

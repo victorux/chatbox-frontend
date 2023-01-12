@@ -2,21 +2,25 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormikControl from './FormikControl';
 import { ButtonStyled, StyledFormContainer } from './forms.styled.js';
+import { updateUserInfo } from '../../redux/apiCall';
+import { useSelector, useDispatch } from "react-redux";
 
 function PersonalInfoForm() {
+  const user = useSelector(state => state.user.currentUser);
+  const dispatch = useDispatch();
 
   const initialValues = {
     firstName: '',
     lastName: '',
-    email: '',
   }
   const validationSchema = Yup.object({
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
-    email: Yup.string().required('Email address is required').email(),
   })
 
-  const onSubmit = values => console.log('Form data', values);
+  const onSubmit = (values) => {
+      updateUserInfo(dispatch, user._id, values);
+  };
 
   return (
     <StyledFormContainer>
@@ -39,13 +43,6 @@ function PersonalInfoForm() {
             label='Last Name'
             name='lastName'
             placeholder='Doe'
-          />
-          <FormikControl
-            control='input'
-            type='email'
-            label='Email'
-            name='email'
-            placeholder='new@email.com'
           />
           <ButtonStyled type='submit'>Update Personal Info</ButtonStyled>
         </Form>

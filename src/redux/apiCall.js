@@ -6,7 +6,7 @@ import {
     updateUserSuccess,
     updateUserFailure
 } from "./userRedux";
-import { publicRequest } from "../requestMethods";
+import { publicRequest, userRequest } from "../requestMethods";
 
 
 export const login = async (dispatch, user ) => {
@@ -23,10 +23,34 @@ export const updateUserImage = async (dispatch, userId, image) =>{
     const url = "/users/updateimage/" + userId
     dispatch(updateUserStart());
     try{
-        const res = await publicRequest.post(url, {
+        const res = await userRequest.post(url, {
             image: image,
         });
-        dispatch(updateUserSuccess(res.data));
+        dispatch(updateUserSuccess({
+            profilePicture: res.data.profilePicture
+        }));
+        return true;
+    } catch(err) {
+        dispatch(updateUserFailure());
+        console.log(err);
+        return false;
+    }
+}
+
+
+export const updateUserInfo = async (dispatch, userId, values) =>{
+    const url = "/users/" + userId
+    dispatch(updateUserStart());
+    try{
+        const res = await userRequest.put(url, {
+            firstName: values.firstName,
+            lastName: values.lastName
+        });
+
+        dispatch(updateUserSuccess({
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+        }));
     } catch(err) {
         dispatch(updateUserFailure());
         console.log(err);

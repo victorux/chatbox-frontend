@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import noAvatar from "../../assets/images/user.png"
 import styled from "styled-components"
@@ -56,11 +56,10 @@ const ErrorStyled = styled.div`
 function ProfileImageForm() {
 	const [selectedFile, setSelectedFile] = useState("");
 	const [image, setImage] = useState("");
-	const [error, setError] = useState(null);
+	const [error, setError] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const dispatch = useDispatch();
-	const { isFetching } = useSelector(state => state.user)
-
 	const user = useSelector(state => state.user.currentUser);
 	const inputFileRef = useRef();
 
@@ -82,30 +81,41 @@ function ProfileImageForm() {
 		const file = e.target.files[0];
 		setSelectedFile(file);
 		previewFiles(file);
-		setError(null);
+		setError(false);
 	}
 
 	const handleCancel = () => {
-		setSelectedFile(null);
-		setImage(null);
+		setSelectedFile("");
+		setImage("");
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		updateUserImage(dispatch, user._id, image);
+		try{
+			setIsLoading(true);
+			const res = await updateUserImage(dispatch, user._id, image);
+			setIsLoading(false);
+			if (!res){ throw new SyntaxError("Error")}
+		} catch (err) {
+			setError(true);
+		}
 		setSelectedFile(null);
-		setImage(null);
+		setImage("");
 	}
 
   return (
     <Container>
-			<ImageDiv>
-				{ image 
-						? <img src={image} alt="preview profile img" />
-    				: <img src={user.profilePicture ? user.profilePicture : noAvatar} alt="profile" />}
-				<HoverSelectBg onClick={handleClick} />
-			</ImageDiv>
-			<form>
+			{
+				isLoading ? <p>Please Wait...</p>
+				: 	<ImageDiv>
+						{ image 
+							? <img src={image} alt="preview profile img" />
+							: <img src={user.profilePicture ? user.profilePicture : noAvatar} alt="profile" />
+						}
+						<HoverSelectBg onClick={handleClick} />
+					</ImageDiv> 
+			}
+			
 				<input 
 					type="file" 
 					ref={inputFileRef} 
@@ -114,16 +124,14 @@ function ProfileImageForm() {
 					accept="image/png, image/jpg, image/jpeg, image/webp"
 					required
 					/>
-				{/* If user selected a file show buttons */}
 				{error ? <ErrorStyled>Something went wrong..</ErrorStyled> : null}
 				{ selectedFile 
-						? <Fragment>
-								<button type="reset" onClick={handleCancel} disabled={isFetching}>Cancel</button>
-								<button type="submit" onClick={handleSubmit} disabled={isFetching}>Upload</button>
-							</Fragment>
+						? <div>
+								<button type="reset" onClick={handleCancel} disabled={isLoading}>Cancel</button>
+								<button type="submit" onClick={handleSubmit} disabled={isLoading}>Upload</button>
+							</div>
 						: <button type="button" onClick={handleClick}>Upload Photo</button>
 				}
-			</form>
     </Container>
   )
 }
