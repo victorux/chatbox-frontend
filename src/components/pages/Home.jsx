@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import Button from '../button/Button';
 import heroImage from '../../assets/images/homeShapes.svg';
 
@@ -141,15 +142,27 @@ const HeroImage = styled.div`
 
 function Home() {
   const navigate = useNavigate();
-  const handlerButton = () => navigate('/login');
-
+  const handlerButton = () => user ? navigate('/chat') : navigate('/login') ;
+  const user = useSelector(state => state.user.currentUser);
   return (
     <Wrapper>
       <Container>
         <Content>
-          <h1>Welcome to ChatBox App!</h1>
+          <h1>
+            {
+              user
+              ? `Welcome back ${user.firstName}`
+              : 'Welcome to ChatBox App!'
+            }
+          </h1>
           <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-          <Button type="primary" onClick={handlerButton}>Start Chat Now. It's Free!</Button>
+          <Button type="primary" onClick={handlerButton}>
+            {
+              user
+              ? "Open ChatBox App"
+              : "Start Chat Now. It's Free!"
+            }
+          </Button>
         </Content>
         <HeroImage>
           <img src={heroImage} alt="" />
