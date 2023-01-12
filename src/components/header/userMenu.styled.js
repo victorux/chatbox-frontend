@@ -39,6 +39,8 @@ export const Menu = styled.div`
     top: 50px;
     right: 0;
     background-color: white;
+    background-color: #FFFFFF;
+    box-shadow: 2px 4px 5px 0 rgb(213 213 213 / 50%);
     width: 140px;
     border-radius: 12px;
     padding: 16px;
@@ -83,4 +85,13 @@ export const Menu = styled.div`
             }
         }
     }
+`
+
+export const Img = styled.img`
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
 `

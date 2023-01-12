@@ -1,4 +1,4 @@
-import { Container, LabelAvatar, Menu, StyledUser } from "./userMenu.styled"
+import { Container, LabelAvatar, Menu, StyledUser, Img } from "./userMenu.styled"
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import arrowDown from '../../assets/icons/arrowdown.svg'
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogOut } from "../../redux/userRedux";
 
 function UserMenu() {
+const userPicture = useSelector(state => state.user.currentUser.profilePicture);
   
 const [showMenu, setShowMenu] = useState(false);
 const ref = useRef();
@@ -41,9 +42,11 @@ const handleLogOut = () => {
   return (
     <Container ref={ref}>
         <StyledUser onClick={handleClickAvatar}>
-            <LabelAvatar>
-              <span>{`${firstName[0]}${lastName[0]}`}</span>
-              </LabelAvatar>
+            {
+              userPicture
+              ? <Img src={userPicture} alt="profile img" />
+              : <LabelAvatar><span>{`${firstName[0]}${lastName[0]}`}</span></LabelAvatar>
+            }
             <img src={arrowDown}  alt="" />
         </StyledUser>
         {
