@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import FormikControl from './FormikControl';
 import { ButtonStyled, StyledFormContainer } from './forms.styled.js';
@@ -6,16 +6,18 @@ import { updateUserInfo } from '../../redux/apiCall';
 import { useSelector, useDispatch } from "react-redux";
 
 function PersonalInfoForm() {
+  
   const user = useSelector(state => state.user.currentUser);
   const dispatch = useDispatch();
-
+  
   const initialValues = {
-    firstName: '',
-    lastName: '',
+    firstName: user.firstName,
+    lastName: user.lastName,
   }
+
   const validationSchema = Yup.object({
-    firstName: Yup.string().required('Required'),
-    lastName: Yup.string().required('Required'),
+    firstName: Yup.string().required('Required').min(2, "Minimum 2 characters required").max(20, "Maximum characters required"),
+    lastName: Yup.string().required('Required').min(2, "Minimum 2 characters required").max(20, "Maximum characters required"),
   })
 
   const onSubmit = (values) => {
@@ -35,16 +37,14 @@ function PersonalInfoForm() {
             type='text'
             label='First Name'
             name='firstName'
-            placeholder='John'
           />
           <FormikControl
             control='input'
             type='text'
             label='Last Name'
             name='lastName'
-            placeholder='Doe'
           />
-          <ButtonStyled type='submit'>Update Personal Info</ButtonStyled>
+           <ButtonStyled type='submit'>Update Personal Info</ButtonStyled>
         </Form>
       </Formik>
     </StyledFormContainer>

@@ -3,9 +3,17 @@ import { AccordionsContainer, BackgroundDiv, LogOutButton, PageTitle } from "../
 import PersonalInfoForm from "../forms/PersonalInfoForm"
 import ChangePasswordForm from "../forms/ChangePasswordForm"
 import ProfileImageForm from "../forms/ProfileImageForm";
+import { userLogOut } from "../../redux/userRedux";
+import { useDispatch } from "react-redux";
 
 
 function Profile() {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(userLogOut());
+  }
+
   return (
     <BackgroundDiv>
       <PageTitle>My Account</PageTitle>
@@ -22,7 +30,7 @@ function Profile() {
           <Accordion label="Change password">
            <ChangePasswordForm />
           </Accordion>
-          <LogOutButton>Log Out</LogOutButton>
+          <LogOutButton type="button" onClick={handleClick}>Log Out</LogOutButton>
         </AccordionsContainer>
     </BackgroundDiv>
   )

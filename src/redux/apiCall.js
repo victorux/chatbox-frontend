@@ -4,7 +4,8 @@ import {
     loginSuccess,
     updateUserStart,
     updateUserSuccess,
-    updateUserFailure
+    updateUserFailure,
+    updatePasswordSuccess
 } from "./userRedux";
 import { publicRequest, userRequest } from "../requestMethods";
 
@@ -54,5 +55,23 @@ export const updateUserInfo = async (dispatch, userId, values) =>{
     } catch(err) {
         dispatch(updateUserFailure());
         console.log(err);
+    }
+}
+
+
+export const updateUserPassword = async (dispatch, userId, values) =>{
+    const url = "/users/" + userId
+    dispatch(updateUserStart());
+    try{
+        await userRequest.put(url, {
+            oldPassword: values.currentPassword,
+            password: values.newPassword
+        });
+        dispatch(updatePasswordSuccess());
+        return true;
+    } catch(err) {
+        dispatch(updateUserFailure());
+        console.log(err);
+        return;
     }
 }
