@@ -151,7 +151,7 @@ function Home() {
           <h1>
             {
               user
-              ? `Welcome back ${user.firstName}`
+              ? `Welcome back ${user.firstName} 👋🏻🎉`
               : 'Welcome to ChatBox App!'
             }
           </h1>
