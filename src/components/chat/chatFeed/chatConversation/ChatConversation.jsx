@@ -54,28 +54,29 @@ function ChatConversation() {
 
   return (
     <Container>
-
-      <MessagesContainer >
-      { currentChat 
-        ? <> { messages?.map((m) => <div ref={scrollRef}><MessageBubble key={m._id} message={m} fromMe={m.sender === user._id ? true : false} /></div>) }</> 
-        : "Open a conversation to start a chat"}
-      </MessagesContainer>
-      
-      <CustomFrom onSubmit={formik.handleSubmit} autoComplete="off">
-        <ComposeMessageContainer>
-          <TextArea 
-            value={formik.values.message}
-            onChange={formik.handleChange}
-            id="message"
-            name="message"
-            placeholder="Type something..."
-            rows={4}
-          />
-        </ComposeMessageContainer>
-        <div>
-          <Button type="submit">Send</Button>
-        </div>
-      </CustomFrom>
+      { currentChat
+       ? <><MessagesContainer>
+              { messages?.map((m) => 
+                  <div ref={scrollRef}><MessageBubble key={m._id} message={m} fromMe={m.sender === user._id ? true : false} /></div>) 
+              }
+            </MessagesContainer>
+            
+            <CustomFrom onSubmit={formik.handleSubmit} autoComplete="off">
+              <ComposeMessageContainer>
+                <TextArea 
+                  value={formik.values.message}
+                  onChange={formik.handleChange}
+                  id="message"
+                  name="message"
+                  placeholder="Type something..."
+                  rows={4}
+                />
+              </ComposeMessageContainer>
+              <div>
+                <Button type="submit">Send</Button>
+              </div>
+            </CustomFrom></>
+      : "Open a conversation to start a chat"}
     </Container>
   )
 }
