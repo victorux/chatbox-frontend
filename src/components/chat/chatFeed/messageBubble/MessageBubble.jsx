@@ -1,16 +1,17 @@
-import Avatar from "../../../avatar/Avatar"
+// import Avatar from "../../../avatar/Avatar"
 
 import {
   Container, 
   CustomBubble
 } from "./messageBubble.styled"
 
-function MessageBubble({ message, linkImg, fromMe }) {
+function MessageBubble({message, fromMe}) {
+
   return (
     <Container fromMe={fromMe}>
-      <Avatar src={linkImg} size="small" />
+      {/* <Avatar src={} size="small" /> */}
       <CustomBubble fromMe={fromMe}>
-        {message}
+       {message.text}
       </CustomBubble>
     </Container>
   )

@@ -12,9 +12,9 @@ import {
 } from "./chatCard.styled"
 
 function ChatCard({conversation, currentUser}) {
+  const currentChat = useSelector(state => state.user.currentChat);
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-  const currentChat = useSelector(state => state.user.currentChat);
 
   const handleClick = () => {
     dispatch(setCurrentChat(conversation));
@@ -25,7 +25,7 @@ function ChatCard({conversation, currentUser}) {
     const getUser = async () => {
       try {
         const BASE_URL = "http://localhost:8800/api"
-        const res = await axios(BASE_URL + "/users?userId=" + friendId);
+        const res = await axios.get(BASE_URL + "/users?userId=" + friendId);
         setUser(res.data);
       } catch (error) {
         console.log(error);
@@ -39,7 +39,7 @@ function ChatCard({conversation, currentUser}) {
     <CardContainer onClick={handleClick}>
       { 
         user ?
-          <CardContent isActive={currentChat._id === conversation._id ? true : false}>
+          <CardContent isActive={currentChat?._id === conversation?._id ? true : false}>
             {
               user?.profilePicture ? <Avatar src="" alt='user'  size='medium' /> : <LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>
             }

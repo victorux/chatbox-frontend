@@ -43,7 +43,7 @@ const userSlice = createSlice({
             state.currentUser = null;
             state.isFetching = false;
             state.error = false;
-            state.activeChat = null;
+            state.currentChat = null;
         },
         setCurrentChat: (state, action) => {
             state.currentChat = action.payload;

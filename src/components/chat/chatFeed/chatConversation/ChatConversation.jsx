@@ -1,14 +1,81 @@
+import { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
+import { useFormik } from "formik"
+import axios from "axios";
 import MessageBubble from "../messageBubble/MessageBubble"
-import { Container } from "./chatconversation.styled"
-
-import img1 from "../../../../assets/images/profile.jpg"
-import img2 from "../../../../assets/images/avatar2.jpg"
+import { Container, MessagesContainer, CustomFrom, ComposeMessageContainer, TextArea, Button} from "./chatconversation.styled"
 
 function ChatConversation() {
+  const currentChat = useSelector(state => state.user.currentChat);
+  const user = useSelector(state => state.user.currentUser);
+  const [messages, setMessages] = useState(null);
+  const BASE_URL = "http://localhost:8800/api/messages/"
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const chatId = currentChat?._id;
+        const res = await axios.get(BASE_URL + chatId);
+        setMessages(res.data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getMessages();
+  }, [currentChat]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSubmit = async (values) => {
+    const msg = {
+      text: values.message,
+      sender: user._id,
+      conversationId: currentChat._id,
+    }
+    try {
+      const res = await axios.post(BASE_URL, msg);
+      console.log(res.data);
+      setMessages([...messages, res.data])
+    } catch (err) {
+      console.log(err);
+    }
+    formik.resetForm();
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      message: ''
+    },
+    onSubmit: handleSubmit,
+  });
+
   return (
     <Container>
-      <MessageBubble message="Hi, how are you?" linkImg={img1} />
-      <MessageBubble message="Hey! Thanks I'am fine" linkImg={img2} fromMe/>
+
+      <MessagesContainer >
+      { currentChat 
+        ? <> { messages?.map((m) => <div ref={scrollRef}><MessageBubble key={m._id} message={m} fromMe={m.sender === user._id ? true : false} /></div>) }</> 
+        : "Open a conversation to start a chat"}
+      </MessagesContainer>
+      
+      <CustomFrom onSubmit={formik.handleSubmit} autoComplete="off">
+        <ComposeMessageContainer>
+          <TextArea 
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            id="message"
+            name="message"
+            placeholder="Type something..."
+            rows={4}
+          />
+        </ComposeMessageContainer>
+        <div>
+          <Button type="submit">Send</Button>
+        </div>
+      </CustomFrom>
     </Container>
   )
 }
