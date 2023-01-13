@@ -7,6 +7,7 @@ export const theme = {
         gray: '#8C8C8C',
         grayBorder: '#DFDFDF',
         grayBg: '#F4F6F8',
+        grayChat: '#e7e9eb',
         danger: '#F33411',
         white: '#FFFFFF'
         }, 

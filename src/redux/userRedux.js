@@ -4,6 +4,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
+        currentChat: null,
         isFetching: false,
         error: false,
     },
@@ -42,8 +43,11 @@ const userSlice = createSlice({
             state.currentUser = null;
             state.isFetching = false;
             state.error = false;
+            state.activeChat = null;
         },
-
+        setCurrentChat: (state, action) => {
+            state.currentChat = action.payload;
+        }
     }
 });
 
@@ -55,7 +59,8 @@ export const {
     updateUserSuccess,
     updateUserFailure,
     userLogOut,
-    updatePasswordSuccess
+    updatePasswordSuccess,
+    setCurrentChat
 } = userSlice.actions;
 export default userSlice.reducer;
 

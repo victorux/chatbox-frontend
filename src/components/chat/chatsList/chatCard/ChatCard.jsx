@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react"
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentChat } from "../../../../redux/userRedux";
 import Avatar from "../../../avatar/Avatar"
 import { 
   CardContainer,
@@ -12,6 +13,12 @@ import {
 
 function ChatCard({conversation, currentUser}) {
   const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const currentChat = useSelector(state => state.user.currentChat);
+
+  const handleClick = () => {
+    dispatch(setCurrentChat(conversation));
+  }
   
   useEffect(() => {
     const friendId = conversation.members.find(m => m !== currentUser._id);
@@ -27,13 +34,12 @@ function ChatCard({conversation, currentUser}) {
     getUser();
   }, [currentUser, conversation]);
 
-  console.log(user);
+  
   return (
-    <CardContainer>
-
+    <CardContainer onClick={handleClick}>
       { 
         user ?
-          <CardContent>
+          <CardContent isActive={currentChat._id === conversation._id ? true : false}>
             {
               user?.profilePicture ? <Avatar src="" alt='user'  size='medium' /> : <LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>
             }

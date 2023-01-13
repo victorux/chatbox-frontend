@@ -25,7 +25,7 @@ export const CardContent = styled.div`
     cursor: pointer;
     width: 100%;
     padding-left: 40px;
-    background-color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme, isActive }) => isActive ? theme.color.grayBg : 'white'};
     padding: 20px 20px 20px 40px;
     margin: 0;
     transition: all 0.33s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -37,7 +37,7 @@ export const CardContent = styled.div`
     }
 
     :hover {
-        background-color: ${({ theme }) => theme.color.primaryLight};
+        background-color: ${({ theme }) => theme.color.grayChat};
     }
 
     @media ${device.tablet}{
