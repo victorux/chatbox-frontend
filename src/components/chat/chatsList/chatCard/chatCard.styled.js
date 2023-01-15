@@ -20,7 +20,7 @@ export const BottomBorder = styled.div`
 export const CardContent = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
     cursor: pointer;
     width: 100%;
@@ -48,7 +48,7 @@ export const CardContent = styled.div`
 export const CardLabelContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 4px;
     height: 56px;
 

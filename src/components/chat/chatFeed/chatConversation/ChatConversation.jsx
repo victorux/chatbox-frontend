@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { socket } from "../../../../socketClient";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik"
 import axios from "axios";
@@ -6,11 +7,20 @@ import MessageBubble from "../messageBubble/MessageBubble"
 import { Container, MessagesContainer, CustomFrom, ComposeMessageContainer, TextArea, Button} from "./chatconversation.styled"
 
 function ChatConversation() {
+
   const currentChat = useSelector(state => state.user.currentChat);
   const user = useSelector(state => state.user.currentUser);
   const [messages, setMessages] = useState(null);
+  const [arivalMessage, setArivalMessage] = useState(null);
   const BASE_URL = "http://localhost:8800/api/messages/"
   const scrollRef = useRef();
+
+  useEffect(() => {
+    socket.emit("addUser", user._id)
+    socket.on("getUsers", users => {
+      // console.log(users);
+    })
+  }, [user]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -35,15 +45,37 @@ function ChatConversation() {
       sender: user._id,
       conversationId: currentChat._id,
     }
+
+    const receiverId = currentChat.members.find((member) => member !== user._id);
+
+    socket.emit("sendMessage", {
+      senderId: user._id,
+      receiverId: receiverId,
+      text: msg.text,
+    });
+
     try {
       const res = await axios.post(BASE_URL, msg);
-      console.log(res.data);
       setMessages([...messages, res.data])
     } catch (err) {
       console.log(err);
     }
     formik.resetForm();
   }
+
+  useEffect(() => {
+    socket.on("getMessage", data => {
+      setArivalMessage({
+        sender: data.senderId,
+        text: data.text,
+      });
+    })
+  }, []);
+
+  useEffect(() => {
+    arivalMessage && currentChat?.members.includes(arivalMessage.sender) && 
+    setMessages(prev => [...prev, arivalMessage]);
+  }, [arivalMessage, currentChat]);
 
   const formik = useFormik({
     initialValues: {
@@ -57,7 +89,7 @@ function ChatConversation() {
       { currentChat
        ? <><MessagesContainer>
               { messages?.map((m) => 
-                  <div ref={scrollRef}><MessageBubble key={m._id} message={m} fromMe={m.sender === user._id ? true : false} /></div>) 
+                  <div key={m._id} ref={scrollRef}><MessageBubble message={m} fromMe={m.sender === user._id ? true : false} /></div>) 
               }
             </MessagesContainer>
             
@@ -76,7 +108,7 @@ function ChatConversation() {
                 <Button type="submit">Send</Button>
               </div>
             </CustomFrom></>
-      : "Open a conversation to start a chat"}
+      : null}
     </Container>
   )
 }

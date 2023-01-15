@@ -17,34 +17,48 @@ const ChatsContainer = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 `
+const Info = styled.div`
+  max-width: 380px;
+  margin: 40px auto;
+  text-align: center;
+  line-height: 1.8;
+  letter-spacing: 0.45px;
+`
 
 function ChatsList() {
   const [conversations, setConversations] = useState([]);
+  const [loading, setLoading] = useState(null);
   const user = useSelector(state => state.user.currentUser);
 
   useEffect(()=>{
+    setLoading(true);
     const BASE_URL = "http://localhost:8800/api"
     const getConversations = async () => {
       try {
         const res = await axios(BASE_URL + "/conversations/" + user._id);
         setConversations(res.data);
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         console.log(err);
       }
     };
     getConversations();
   }, [user._id])
 
+  console.log(conversations);
   return (
     <Container>
       <ChatsHeader />
-      <ChatsContainer>
-      {
-        conversations.map(c => 
-          <ChatCard key={c._id} conversation={c} currentUser={user} />
-        )
-      }
+      { loading 
+      ? <Info>Loading..</Info> 
+      : <ChatsContainer>
+        { conversations.length > 1 
+          ? conversations.map(c => <ChatCard key={c._id} conversation={c} currentUser={user} />) 
+          : <Info>Seems like you dont have any conversations. <br />To start first conversation click the search button above.</Info>
+        }
       </ChatsContainer>
+      }
     </Container>
   )
 }

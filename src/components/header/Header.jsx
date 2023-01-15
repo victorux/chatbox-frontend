@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import Button from '../button/Button'
-import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, UserArea, ChatContainer, ChatLabel } from './header.styled'
+import { HeaderStyled, LogoStyled, LogoIcon, LogoLabel, UserArea, ChatContainer } from './header.styled'
 import UserMenu from "./UserMenu";
 import chatIcon from '../../assets/icons/chat.svg'
 import { useSelector } from "react-redux";
@@ -33,7 +33,7 @@ function Header() {
             <Fragment>
               <ChatContainer onClick={handlerChat}>
                 <img src={chatIcon} alt="" />
-                <ChatLabel />
+                {/* <ChatLabel /> */}
               </ChatContainer>
               <UserMenu />
             </Fragment> 

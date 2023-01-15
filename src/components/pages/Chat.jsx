@@ -12,15 +12,16 @@ const Container = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: row;
-
+    
     @media ${device.tablet}{
-        height: calc(100vh - 88px);
+      height: calc(100vh - 88px);
     }
 `
 
 
 
 function Chat() {
+
   return (
     <Container>
       <ChatsList />
