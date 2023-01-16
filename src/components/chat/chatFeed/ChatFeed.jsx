@@ -9,7 +9,7 @@ function ChatFeed() {
 
   return (
     <ChatFeedContainer>
-      { currentChat ? <ChatHeader /> : null}  
+      { currentChat ? <ChatHeader currentChat={currentChat} /> : null}  
       <ChatConversation />
     </ChatFeedContainer>
   )

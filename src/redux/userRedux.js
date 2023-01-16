@@ -7,6 +7,8 @@ const userSlice = createSlice({
         currentChat: null,
         isFetching: false,
         error: false,
+        newConv: null,
+        userConversations: null
     },
     reducers:{
         loginStart: (state) => {
@@ -47,6 +49,12 @@ const userSlice = createSlice({
         },
         setCurrentChat: (state, action) => {
             state.currentChat = action.payload;
+        },
+        addNewConversation: (state, action) => {
+            state.newConv = action.payload;
+        },
+        updateUserConversations: (state, action) => {
+            state.userConversations = action.payload;
         }
     }
 });
@@ -60,7 +68,9 @@ export const {
     updateUserFailure,
     userLogOut,
     updatePasswordSuccess,
-    setCurrentChat
+    setCurrentChat,
+    addNewConversation,
+    updateUserConversations
 } = userSlice.actions;
 export default userSlice.reducer;
 

@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
+import { updateUserConversations } from "../../../redux/userRedux"
 import axios from "axios"
 import ChatCard from "./chatCard/ChatCard"
 import ChatsHeader from "./chatsHeader/ChatsHeader"
@@ -29,6 +30,8 @@ function ChatsList() {
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(null);
   const user = useSelector(state => state.user.currentUser);
+  const newConversation = useSelector(state => state.user.newConv);
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     setLoading(true);
@@ -37,6 +40,7 @@ function ChatsList() {
       try {
         const res = await axios(BASE_URL + "/conversations/" + user._id);
         setConversations(res.data);
+        dispatch(updateUserConversations(res.data));
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -44,16 +48,17 @@ function ChatsList() {
       }
     };
     getConversations();
-  }, [user._id])
+    // eslint-disable-next-line
+  }, [user._id, newConversation])
 
-  console.log(conversations);
+  
   return (
     <Container>
       <ChatsHeader />
       { loading 
       ? <Info>Loading..</Info> 
       : <ChatsContainer>
-        { conversations.length > 1 
+        { conversations.length >= 1 
           ? conversations.map(c => <ChatCard key={c._id} conversation={c} currentUser={user} />) 
           : <Info>Seems like you dont have any conversations. <br />To start first conversation click the search button above.</Info>
         }

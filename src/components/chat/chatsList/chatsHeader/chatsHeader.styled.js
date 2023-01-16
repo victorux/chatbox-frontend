@@ -98,6 +98,7 @@ export const ListUsers = styled.div`
     max-height: 300px;
     margin-top: 10px;
     overflow-y: auto;
+    overflow-x: hidden;
 `
 
 export const UserCard = styled.div`

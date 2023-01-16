@@ -41,7 +41,7 @@ function ChatCard({conversation, currentUser}) {
         user ?
           <CardContent isActive={currentChat?._id === conversation?._id ? true : false}>
             {
-              user?.profilePicture ? <Avatar src="" alt='user'  size='medium' /> : <LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>
+              user?.profilePicture ? <Avatar src={user.profilePicture} alt='user'  size='medium' /> : <LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>
             }
             <CardLabelContainer>
               <span>{user?.firstName + " " + user?.lastName}</span>
