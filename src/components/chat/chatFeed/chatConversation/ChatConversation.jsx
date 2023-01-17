@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { socket } from "../../../../socketClient";
 import { useSelector } from "react-redux";
-import { useFormik } from "formik"
+import { useFormik} from "formik"
 import axios from "axios";
 import MessageBubble from "../messageBubble/MessageBubble"
 import { Container, MessagesContainer, CustomFrom, ComposeMessageContainer, TextArea, Button} from "./chatconversation.styled"
@@ -14,6 +14,7 @@ function ChatConversation() {
   const [arivalMessage, setArivalMessage] = useState(null);
   const BASE_URL = "http://localhost:8800/api/messages/"
   const scrollRef = useRef();
+  const receiverId = currentChat?.members.find((member) => member !== user._id);
 
   useEffect(() => {
     socket.emit("addUser", user._id)
@@ -40,16 +41,16 @@ function ChatConversation() {
   }, [messages]);
 
   const handleSubmit = async (values) => {
+    
     const msg = {
       text: values.message,
       sender: user._id,
       conversationId: currentChat._id,
     }
 
-    const receiverId = currentChat.members.find((member) => member !== user._id);
 
     socket.emit("sendMessage", {
-      senderId: user._id,
+      senderId: user?._id,
       receiverId: receiverId,
       text: msg.text,
     });
@@ -93,7 +94,10 @@ function ChatConversation() {
               }
             </MessagesContainer>
             
-            <CustomFrom onSubmit={formik.handleSubmit} autoComplete="off">
+            <CustomFrom 
+              onSubmit={formik.handleSubmit} 
+              autoComplete="off"
+              >
               <ComposeMessageContainer>
                 <TextArea 
                   value={formik.values.message}

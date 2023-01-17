@@ -45,9 +45,9 @@ function ChatCard({conversation, currentUser}) {
             }
             <CardLabelContainer>
               <span>{user?.firstName + " " + user?.lastName}</span>
-              <p>last message goes here</p>
+              {/* <p>last message goes here</p> */}
             </CardLabelContainer>
-            <span>0d</span>
+            {/* <span>0d</span> */}
           </CardContent>
         : null
       }

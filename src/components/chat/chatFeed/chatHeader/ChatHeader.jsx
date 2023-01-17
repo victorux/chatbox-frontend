@@ -3,6 +3,8 @@ import Avatar from "../../../avatar/Avatar"
 import moreIcon from "../../../../assets/icons/threedots.svg"
 import { asyncEmit } from "../../../../socketClient"
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import { updateReceiver } from "../../../../redux/userRedux"
 
 import {
   ChatWith,
@@ -14,30 +16,33 @@ import { useSelector } from "react-redux"
 import { useState } from "react"
 
 function ChatHeader({ currentChat }) {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser);
+  const receiverUser = useSelector(state => state.user.receiver);
+
   const [isOnline, setIsOnline] = useState(null);
-  const [receiverUser, setReceiverUser] = useState(null);
-  const receiver = currentChat?.members.find((member)=> member !== user._id);
+
+  const receiverId = currentChat?.members.find((member)=> member !== user._id);
 
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/users?userId=" + receiver);
-        setReceiverUser(res.data);
+        const res = await axios.get("http://localhost:8800/api/users?userId=" + receiverId);
+        dispatch(updateReceiver(res.data));
       } catch (error) {
         console.log(error);
       }
     }
     getUser();
-  }, [currentChat.members, user._id, receiver]);
+  }, [currentChat, dispatch, receiverId, user._id]);
 
 useEffect(() => {
 
     const getOnlineUsers = async (clientData) => {
       const onlineUsers = await asyncEmit("getOnlineUsers", clientData);
       // if receiver is in the list set the status to online 
-      if (onlineUsers.some((usr) => usr.userId === receiver)){
+      if (onlineUsers.some((usr) => usr.userId === receiverId)){
         setIsOnline(true);
       } else {
         setIsOnline(false);
@@ -46,7 +51,7 @@ useEffect(() => {
 
    getOnlineUsers();
 
-  }, [receiver, currentChat]);
+  }, [receiverId, currentChat]);
 
   return (
     <Container>

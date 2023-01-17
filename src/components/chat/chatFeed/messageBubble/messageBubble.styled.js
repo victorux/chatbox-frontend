@@ -40,3 +40,19 @@ export const CustomBubble = styled.div`
     letter-spacing: 0.4px;
     ${({ fromMe }) => handlerBubble(fromMe)}
 `
+
+export const LabelAvatar = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff9933;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-family: ${({theme}) => theme.font.ubuntu};
+    color: white;
+    font-size: ${({theme}) => theme.fontSize._200};
+    letter-spacing: 1px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    user-select: none;
+`

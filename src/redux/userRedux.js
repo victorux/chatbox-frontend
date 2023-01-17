@@ -8,7 +8,8 @@ const userSlice = createSlice({
         isFetching: false,
         error: false,
         newConv: null,
-        userConversations: null
+        userConversations: null,
+        receiver: null,
     },
     reducers:{
         loginStart: (state) => {
@@ -55,6 +56,9 @@ const userSlice = createSlice({
         },
         updateUserConversations: (state, action) => {
             state.userConversations = action.payload;
+        },
+        updateReceiver: (state, action) => {
+            state.receiver = action.payload
         }
     }
 });
@@ -70,7 +74,8 @@ export const {
     updatePasswordSuccess,
     setCurrentChat,
     addNewConversation,
-    updateUserConversations
+    updateUserConversations,
+    updateReceiver
 } = userSlice.actions;
 export default userSlice.reducer;
 
