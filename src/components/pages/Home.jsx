@@ -81,11 +81,26 @@ const Content = styled.div`
   }
 
   p {
-    font-size: ${({theme}) => theme.fontSize._400};
+    font-size: ${({theme}) => theme.fontSize._300};
     max-width: 560px;
-    margin: 34px 0;
+    margin: 10px 0 30px 0;
     color: ${({theme}) => theme.color.gray};
     flex-grow: 1;
+    letter-spacing: 0.25px;
+    line-height: 1.65;
+    font-weight: 400;
+
+    a {
+      text-decoration: none;
+      border-bottom: 1px dotted white;
+      padding-bottom: 2px;
+      color: #fff;
+      opacity: 0.7;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+      &:hover {
+        opacity: 1;
+      }
+    }
 
     @media ${device.laptopL}{
      max-width: 470px;
@@ -155,7 +170,7 @@ function Home() {
               : 'Welcome to ChatBox App!'
             }
           </h1>
-          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+          <p>The ChatBox is a custom-built, self-initiated web application, designed and developed by <a href="https://victorbotan.com" target="_blank">Victor Botan</a> utilizing the MERN stack and Socket.io technology. The application is specially designed for showcasing portfolio capabilities.</p>
           <Button type="primary" onClick={handlerButton}>
             {
               user

@@ -26,7 +26,7 @@ export const MessagesContainer = styled.div`
     display: flex;
     overflow-x: hidden;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     flex: 1 1 content;
 `
 

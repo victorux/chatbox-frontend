@@ -12,7 +12,7 @@ function ChatConversation() {
   const user = useSelector(state => state.user.currentUser);
   const [messages, setMessages] = useState(null);
   const [arivalMessage, setArivalMessage] = useState(null);
-  const BASE_URL = "http://localhost:8800/api/messages/"
+  const BASE_URL = "https://chabox-server.onrender.com/api/messages/"
   const scrollRef = useRef();
   const receiverId = currentChat?.members.find((member) => member !== user._id);
 

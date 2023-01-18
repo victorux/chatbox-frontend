@@ -28,7 +28,7 @@ function ChatHeader({ currentChat }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/users?userId=" + receiverId);
+        const res = await axios.get("https://chabox-server.onrender.com/api/users?userId=" + receiverId);
         dispatch(updateReceiver(res.data));
       } catch (error) {
         console.log(error);

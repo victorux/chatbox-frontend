@@ -5,7 +5,7 @@ function Login() {
   return (
     <WrapperForm>
         <Title>Log In</Title>
-        <Description>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Description>
+        <Description>Please enter your email and password to access your account..</Description>
         <LoginForm />
     </WrapperForm>
   )

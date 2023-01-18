@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from 'moment';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentChat } from "../../../../redux/userRedux";
@@ -12,9 +13,11 @@ import {
 } from "./chatCard.styled"
 
 function ChatCard({conversation, currentUser}) {
-  const currentChat = useSelector(state => state.user.currentChat);
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+  const currentChat = useSelector(state => state.user.currentChat);
+
+  const [user, setUser] = useState(null);
+  const [lastMessage, setLastMessage] = useState(null);
 
   const handleClick = () => {
     dispatch(setCurrentChat(conversation));
@@ -24,17 +27,22 @@ function ChatCard({conversation, currentUser}) {
     const friendId = conversation.members.find(m => m !== currentUser._id);
     const getUser = async () => {
       try {
-        const BASE_URL = "http://localhost:8800/api"
+        const BASE_URL = "https://chabox-server.onrender.com/api"
         const res = await axios.get(BASE_URL + "/users?userId=" + friendId);
+        const fetchLastMessage = await axios.post("https://chabox-server.onrender.com/api/messages/last/message",{
+          conversationId: conversation?._id,
+          sender: friendId
+        });
         setUser(res.data);
+        setLastMessage(fetchLastMessage.data);
       } catch (error) {
         console.log(error);
       }
     }
     getUser();
-  }, [currentUser, conversation]);
+  }, [currentUser, conversation, currentChat?._id]);
 
-  
+  console.log(conversation);
   return (
     <CardContainer onClick={handleClick}>
       { 
@@ -45,9 +53,16 @@ function ChatCard({conversation, currentUser}) {
             }
             <CardLabelContainer>
               <span>{user?.firstName + " " + user?.lastName}</span>
-              {/* <p>last message goes here</p> */}
+              {
+                lastMessage ? 
+                <p>{lastMessage?.text}</p> 
+                : <p> </p>
+              }
             </CardLabelContainer>
-            {/* <span>0d</span> */}
+            { lastMessage
+              ? <span>{moment(lastMessage.createdAt).fromNow('m SS')}</span>
+              : null
+            }
           </CardContent>
         : null
       }

@@ -37,7 +37,7 @@ function RegisterForm() {
   
     const makeRequest = async (data) => {
     await  axios.post(
-        'http://localhost:8800/api/auth/register', data)
+        'https://chabox-server.onrender.com/api/auth/register', data)
         .then( function (response){
           if(response.status === 200){
             resetForm();
@@ -101,8 +101,8 @@ function RegisterForm() {
         </Form>
       </Formik>
       <OtherOptions>
-        <span>or</span>
-        <Link to='/login'>Log In</Link>
+        <span>Already have an account?</span>
+        <Link to='/login'>Login Here</Link>
       </OtherOptions>
     </StyledFormContainer>
   )

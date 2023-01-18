@@ -35,7 +35,7 @@ function ChatsList() {
 
   useEffect(()=>{
     setLoading(true);
-    const BASE_URL = "http://localhost:8800/api"
+    const BASE_URL = "https://chabox-server.onrender.com/api"
     const getConversations = async () => {
       try {
         const res = await axios(BASE_URL + "/conversations/" + user._id);

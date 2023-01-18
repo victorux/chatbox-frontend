@@ -51,8 +51,8 @@ function LoginForm() {
         </Form>
       </Formik>
       <OtherOptions>
-        <span>or</span>
-        <Link to='/register'>Register</Link>
+        <span>Don't have an account yet?</span>
+        <Link to='/register'>Sign up now!</Link>
       </OtherOptions>
     </StyledFormContainer>
   )
