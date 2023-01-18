@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://chabox-server.onrender.com:8800/api"
+const BASE_URL = "https://chabox-server.onrender.com/api"
 
 const currentUser = JSON.parse(window.localStorage.getItem("persist:root"))?.currentUser;
 const TOKEN = currentUser && JSON.parse(currentUser)?.accessToken;
