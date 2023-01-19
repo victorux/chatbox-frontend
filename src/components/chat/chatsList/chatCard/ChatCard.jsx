@@ -42,7 +42,6 @@ function ChatCard({conversation, currentUser}) {
     getUser();
   }, [currentUser, conversation, currentChat?._id]);
 
-  console.log(conversation);
   return (
     <CardContainer onClick={handleClick}>
       { 

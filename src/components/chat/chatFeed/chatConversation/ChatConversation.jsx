@@ -19,7 +19,6 @@ function ChatConversation() {
   useEffect(() => {
     socket.emit("addUser", user._id)
     socket.on("getUsers", users => {
-      // console.log(users);
     })
   }, [user]);
 
