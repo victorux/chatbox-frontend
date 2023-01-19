@@ -10,6 +10,7 @@ import GlobalStyles from "./components/styles/Global";
 import { theme } from "./components/styles/Theme";
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux'
+import Success from './components/pages/Success'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/login' element={user ? <Navigate to="/" /> : <Login />} />
           <Route path='/register' element={user ? <Navigate to="/" />: <Register />} />
           <Route path='/profile' element={user ? <Profile /> : <Navigate to="/" />} />
+          <Route path='/success' element={!user ? <Success /> : <Navigate to="/success" />} />
         </Routes>
       </BrowserRouter>
     </>

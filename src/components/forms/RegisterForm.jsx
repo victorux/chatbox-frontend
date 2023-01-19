@@ -41,7 +41,7 @@ function RegisterForm() {
         .then( function (response){
           if(response.status === 200){
             resetForm();
-            navigate("/login");
+            navigate("/success");
           }
         })
         .catch(function(err){
