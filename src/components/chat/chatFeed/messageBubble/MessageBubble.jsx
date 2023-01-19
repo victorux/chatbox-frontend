@@ -18,9 +18,9 @@ function MessageBubble({message, fromMe}) {
       {
         (() => {
           if (fromMe) {
-            if(user.profilePicture){return(<Avatar src={user.profilePicture} size="small" />)}else{return(<LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>)}
+            if(user?.profilePicture){return(<Avatar src={user?.profilePicture} size="small" />)}else{return(<LabelAvatar><span>{`${user?.firstName[0]}${user?.lastName[0]}`}</span></LabelAvatar>)}
           } else {
-            if(receiver.profilePicture){return(<Avatar src={receiver.profilePicture} size="small" />)}else{return(<LabelAvatar><span>{`${receiver?.firstName[0]}${receiver?.lastName[0]}`}</span></LabelAvatar>)}
+            if(receiver?.profilePicture){return(<Avatar src={receiver?.profilePicture} size="small" />)}else{return(<LabelAvatar><span>{`${receiver?.firstName[0]}${receiver?.lastName[0]}`}</span></LabelAvatar>)}
           }
         })()
       }
