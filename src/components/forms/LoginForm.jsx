@@ -12,8 +12,8 @@ function LoginForm() {
   const { isFetching, error } = useSelector(state => state.user);
 
   const initialValues = {
-    email: '',
-    password: ''
+    email: 'guest@chatbox.com',
+    password: '123456'
   }
   const validationSchema = Yup.object({
     email: Yup.string().required('Email address is required').email(),
