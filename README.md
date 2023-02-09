@@ -24,8 +24,16 @@ Below is a ist of technologies used throughout the project.
 If you want to play around with ChatBox App, feel free to clone our repo. To start, please enter the following commands on your terminal:
 
 ```
-git clone https://github.com/2009-fsa-cs-ashes-archers/JobMapApp
-cd JobMapApp
+git clone https://github.com/victorux/chatbox-frontend.git
+cd chatbox-frontend
 npm install
-npm run start-dev
+npm run start
 ```
+
+## Back-End Server Repository
+
+(https://github.com/victorux/chatbox-server)
+
+## Socket.io Server Repository
+
+(https://github.com/victorux/chatbox-socket.io)
