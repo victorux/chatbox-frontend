@@ -7,3 +7,10 @@ The ChatBox is a custom-built messenger application, designed and developed by V
 ## [Demo Video on YouTube](https://youtube.com)
 ## Screenshots
 <img src="/public/screenshots.webp">
+## Tech-Stack
+| Front End | Back End |
+| --- | --- |
+| React | Node/Express |
+| Redux | Socket.io |
+| Styled-Components | MongoDB |
+| Router-Dom | JWToken |
