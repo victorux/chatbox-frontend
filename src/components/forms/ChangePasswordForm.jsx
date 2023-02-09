@@ -58,6 +58,7 @@ function ChangePasswordForm() {
             label='New Password'
             name='newPassword'
             placeholder=''
+
           />
           <FormikControl
             control='input'
