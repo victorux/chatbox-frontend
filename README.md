@@ -6,6 +6,7 @@ The ChatBox is a custom-built messenger application, designed and developed by V
 
 ## [Demo Video on YouTube](https://youtube.com)
 ## Screenshots
+
 <img src="/public/screenshots.webp">
 
 ## Tech-Stack
@@ -29,6 +30,7 @@ cd chatbox-frontend
 npm install
 npm run start
 ```
+*Note: This repository include only frontend part,  check bellow the links to the server.*
 
 ## Back-End Server Repository
 
