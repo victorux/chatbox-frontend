@@ -32,8 +32,8 @@ npm run start
 
 ## Back-End Server Repository
 
-(https://github.com/victorux/chatbox-server)
+https://github.com/victorux/chatbox-server
 
 ## Socket.io Server Repository
 
-(https://github.com/victorux/chatbox-socket.io)
+https://github.com/victorux/chatbox-socket.io
