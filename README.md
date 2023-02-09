@@ -30,7 +30,7 @@ cd chatbox-frontend
 npm install
 npm run start
 ```
-*Note: This repository include only frontend part,  check bellow the links to the server part.*
+*Note: This repository include only the frontend part,  please check out bellow the links to the server part.*
 
 ## Back-End Server Repository
 
