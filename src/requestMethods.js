@@ -2,8 +2,10 @@ import axios from "axios";
 
 const BASE_URL = "https://chabox-server.onrender.com/api"
 
-const currentUser = JSON.parse(window.localStorage.getItem("persist:root"))?.currentUser;
-const TOKEN = currentUser ? JSON.parse(currentUser)?.accessToken : null;
+// const currentUser = JSON.parse(window.localStorage.getItem("persist:root"))?.currentUser;
+// const TOKEN = currentUser ? JSON.parse(currentUser)?.accessToken : null;
+
+const TOKEN = JSON.parse(window.localStorage.getItem("persist:root")).currentUser.accessToken;
 
 export const publicRequest = axios.create({
     baseURL: BASE_URL,
